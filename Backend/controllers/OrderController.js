@@ -41,7 +41,8 @@ const getAvailableOrders = async (req, res) => {
     try {
         // Query for any order not yet assigned, and exclude orders placed by the delivery person themselves
         const orders = await orderModel.find({ 
-            deliveryPerson: { $in: [null, undefined] },
+            status: "Placed",
+            deliveryPerson: { $in: [null, undefined, ""] },
             userId: { $ne: req.userId }
         }).sort({ date: -1 });
         
