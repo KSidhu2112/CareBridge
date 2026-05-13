@@ -2,7 +2,7 @@
 .banner {
   height: 60vh;
   margin: 2rem;
-  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("banner.png") no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("/banner.png") no-repeat center center;
   background-size: cover;
   position: relative;
   border-radius: 24px;
