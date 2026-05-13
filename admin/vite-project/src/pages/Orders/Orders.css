@@ -1,0 +1,56 @@
+.admin-orders {
+  padding: 20px;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.order-actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.verify-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.status.placed {
+  color: orange;
+}
+
+.status.received {
+  color: green;
+}
+
+.status.cancelled {
+  color: red;
+}
+
+.info-text {
+  color: gray;
+  font-style: italic;
+}

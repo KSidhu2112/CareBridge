@@ -1,0 +1,148 @@
+/* Footer.css */
+.footer {
+  background: #0a0a0a;
+  color: #ffffff;
+  padding: 6rem 5% 2rem;
+  margin-top: 4rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-logo .logo-text {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.footer-logo .logo-highlight {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 4px;
+}
+
+.footer-slogan {
+  font-size: 0.9rem;
+  color: var(--primary) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem !important;
+}
+
+.footer-logo p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #999;
+  max-width: 400px;
+}
+
+.footer-links h3,
+.footer-contact h3,
+.social-links h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.footer-links ul {
+  list-style: none;
+}
+
+.footer-links ul li {
+  margin-bottom: 0.8rem;
+}
+
+.footer-links ul li a {
+  color: #999;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.footer-links ul li a:hover {
+  color: var(--primary);
+  padding-left: 5px;
+}
+
+.footer-contact p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.social-icons img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: var(--transition);
+  filter: grayscale(1) opacity(0.6);
+  border-radius: 50%; /* Ensure they are circles */
+}
+
+.social-icons a:hover img {
+  transform: translateY(-5px);
+  filter: none;
+  opacity: 1;
+}
+
+.social-icons a:hover .linkedin {
+  /* LinkedIn Blue #0077B5 */
+  filter: invert(31%) sepia(87%) saturate(1354%) hue-rotate(174deg) brightness(92%) contrast(101%);
+}
+
+.social-icons a:hover .insta {
+  /* Instagram Brand Hover */
+  filter: drop-shadow(0 0 8px rgba(225, 48, 108, 0.4));
+  transform: translateY(-5px) scale(1.1);
+}
+
+
+.footer hr {
+  border: none;
+  border-top: 1px solid #222;
+  margin: 4rem 0 2rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .footer {
+    padding: 4rem 2rem 2rem;
+  }
+}

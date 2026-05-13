@@ -1,0 +1,112 @@
+/* Item Card */
+.item-card {
+  width: 100%;
+  max-width: 320px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  position: relative;
+  border: 1px solid #f0f0f0;
+}
+
+.item-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+.item-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.item-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Detail Section */
+.item-card .det {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.item-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.item-card p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.item-card p:last-child {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+/* Add-to-cart overlay container */
+.addtocart {
+  position: absolute;
+  top: 180px;
+  right: 15px;
+  z-index: 10;
+}
+
+/* Add button */
+.addtocart .add {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+}
+
+.addtocart .add:hover {
+  transform: scale(1.1) rotate(90deg);
+  background: var(--primary);
+  filter: brightness(0) invert(1);
+}
+
+/* Counter Handler */
+.count-handler {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  padding: 6px 12px;
+  border-radius: 50px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--primary);
+}
+
+.count-handler img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.count-handler img:hover {
+  transform: scale(1.2);
+}
+
+.count-handler p {
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+}

@@ -1,0 +1,101 @@
+/* sideBar.css */
+
+/* Sidebar container */
+.sidebar {
+  
+  
+  width: 15%;
+  min-height: 100vh;
+  border: 1px solid #e0e0e0;
+  border-top: 0;
+  padding: 80px 20px;
+}
+/* Sidebar Container */
+
+
+/* Common link styling */
+.sidebar a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 14px 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  color: #333;
+}
+
+/* Hover effect */
+.sidebar a:hover {
+  background-color: #f0f3ff;
+  transform: translateX(5px);
+}
+
+/* Active link (React Router NavLink) */
+.sidebar a.active {
+  background-color: #dbe2ff;
+  color: #304ffe;
+  font-weight: 600;
+}
+
+/* Icons */
+.icon {
+  height: min(10vw, 60px);
+  width: min(10vw, 60px);
+  margin-right: 18px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+/* Slight zoom on hover */
+.sidebar a:hover .icon {
+  transform: scale(1.05);
+}
+
+/* Text styling */
+.text {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+    padding: 25px 15px;
+  }
+
+  .text {
+    font-size: 16px;
+  }
+
+  .icon {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+/* Mobile view — collapses to icons only */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 80px;
+    padding: 20px 10px;
+    align-items: center;
+  }
+
+  .text {
+    display: none;
+  }
+
+  .icon {
+    margin: 0;
+    height: 45px;
+    width: 45px;
+  }
+
+  .sidebar a {
+    justify-content: center;
+  }
+}

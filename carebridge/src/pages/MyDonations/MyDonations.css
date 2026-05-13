@@ -1,0 +1,62 @@
+.my-donations {
+    margin: 50px auto;
+    width: 80%;
+}
+
+.my-donations h2 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.donations-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.donation-card {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    gap: 30px;
+    font-size: 14px;
+    padding: 20px;
+    border: 1px solid tomato;
+    border-radius: 5px;
+}
+
+.donation-image img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.donation-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.donation-info b {
+    color: #454545;
+}
+
+.donation-status {
+    text-align: right;
+    font-weight: 600;
+    color: #454545;
+}
+
+.donation-status span {
+    color: tomato;
+}
+
+@media (max-width: 750px) {
+    .donation-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}

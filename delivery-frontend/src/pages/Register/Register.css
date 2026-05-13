@@ -1,0 +1,78 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background-color: #f4f4f4;
+}
+
+.register-form {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.register-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Reusing form-group styles from Login if globals are set, but safer to redefine or import */
+.register-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.register-form .form-group label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.register-form .form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+.register-form .form-group input:focus {
+    border-color: #ff6347;
+}
+
+.register-form button {
+    background-color: #ff6347;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.register-form button:hover {
+    background-color: #e5533d;
+}
+
+.register-form p {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.register-form p span {
+    color: #ff6347;
+    cursor: pointer;
+    font-weight: bold;
+}

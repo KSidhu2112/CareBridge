@@ -1,0 +1,81 @@
+/* Donation Section Grid */
+.donation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 60px 40px;
+  background: #f8f9fa; /* light background */
+  text-align: center;
+
+}
+
+/* Individual Cards */
+.donation-card {
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+align-items: center;
+align-content: center;
+  height: 450px;
+}
+
+.donation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* Icons */
+.donation-card .icon {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  color: #2c3e50; /* dark blue-gray */
+}
+
+/* Headings */
+.donation-card h3 {
+  font-size: 1.9rem;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+/* Description */
+.donation-card p {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.donation-card button {
+  background: rgb(14, 156, 216); /* green */
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+  width: 350px ;
+  font-weight: 600;
+  height: 100px;
+}
+
+.donation-card button:hover {
+  background: #219150;
+  transform: scale(1.05);
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .donation-grid {
+    padding: 40px 20px;
+    gap: 16px;
+  }
+
+  .donation-card {
+    padding: 20px 15px;
+  }
+}

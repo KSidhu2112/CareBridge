@@ -1,0 +1,74 @@
+.login-popup {
+    min-height: 80vh;
+    /* Adjust for navbar if visible, or full screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4;
+}
+
+.login-popup-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.login-popup-title h2 {
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+.login-popup-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-popup-inputs input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.login-popup-container button {
+    padding: 12px;
+    background-color: tomato;
+    /* Match admin theme */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-popup-container button:hover {
+    background-color: #ff4c4c;
+}
+
+.login-popup-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.login-popup-condition {
+    font-size: 14px;
+    text-align: center;
+}
+
+.login-popup-condition span {
+    color: tomato;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resend-otp:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,244 @@
+/* Navbar.css */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--glass-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.navbar:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Logo */
+.logo a {
+  text-decoration: none;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.logo-highlight {
+  background: linear-gradient(135deg, var(--primary) 0%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 2px;
+}
+
+.logo:hover .logo-text {
+  transform: scale(1.05);
+}
+
+.logo:hover .logo-highlight {
+  filter: brightness(1.1);
+}
+
+/* Nav list */
+.list ul {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.list ul a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main);
+  position: relative;
+  padding: 5px 0;
+}
+
+.list ul a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: var(--transition);
+}
+
+.list ul a:hover::after,
+.list ul a.active::after {
+  width: 100%;
+}
+
+.list ul a:hover {
+  color: var(--primary);
+}
+
+.list ul a.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.track-order, .cartbtn button, .sign-in button {
+  white-space: nowrap;
+  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+
+.track-order {
+  background: var(--secondary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 78, 137, 0.2);
+}
+
+.track-order:hover {
+  background: #003d6b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 78, 137, 0.3);
+}
+
+.cartbtn button {
+  background: white;
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+}
+
+.cartbtn button:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.sign-in button {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.2);
+}
+
+.sign-in button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Profile Dropdown */
+.navbar-profile {
+  position: relative;
+}
+
+.navbar-profile > img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  padding: 2px;
+  transition: var(--transition);
+}
+
+.nav-profile_dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 200px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  padding: 0.5rem 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+  border: 1px solid #eee;
+}
+
+.navbar-profile:hover .nav-profile_dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-profile_dropdown li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.8rem 1.2rem;
+  list-style: none;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: var(--transition);
+}
+
+.nav-profile_dropdown li:hover {
+  background: var(--bg-soft);
+  color: var(--primary);
+}
+
+.nav-profile_dropdown li img {
+  width: 18px;
+  filter: grayscale(1);
+}
+
+.nav-profile_dropdown li:hover img {
+  filter: none;
+}
+
+.nav-profile_dropdown hr {
+  margin: 0.5rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 1rem 3%;
+  }
+  .list ul {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .list {
+    order: 3;
+    width: 100%;
+  }
+  .list ul {
+    justify-content: center;
+    gap: 1.2rem;
+  }
+}
