@@ -95,8 +95,7 @@
   height: 32px;
   cursor: pointer;
   transition: var(--transition);
-  filter: grayscale(1) opacity(0.6);
-  border-radius: 50%; /* Ensure they are circles */
+  filter: brightness(0) invert(1) opacity(0.6);
 }
 
 .social-icons a:hover img {
@@ -105,17 +104,16 @@
   opacity: 1;
 }
 
+/* Brand specific hover effects */
 .social-icons a:hover .linkedin {
   /* LinkedIn Blue #0077B5 */
   filter: invert(31%) sepia(87%) saturate(1354%) hue-rotate(174deg) brightness(92%) contrast(101%);
 }
 
 .social-icons a:hover .insta {
-  /* Instagram Brand Hover */
-  filter: drop-shadow(0 0 8px rgba(225, 48, 108, 0.4));
-  transform: translateY(-5px) scale(1.1);
+  filter: none;
+  /* Show original gradient */
 }
-
 
 .footer hr {
   border: none;

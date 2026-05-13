@@ -49,7 +49,7 @@ function Footer() {
       </div>
 
       <hr />
-      <p className="footer-bottom">© 2025 Care Bridge | Share & Care. All rights reserved.</p>
+      <p className="footer-bottom">© 2026 Care Bridge | Share & Care. All rights reserved.</p>
     </footer>
   );
 }
