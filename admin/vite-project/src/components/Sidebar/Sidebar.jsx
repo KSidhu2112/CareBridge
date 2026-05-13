@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import './sideBar.css'
+import './Sidebar.css'
 import { assets } from '../../../../../carebridge/src/assets/assets/assets'
 import { NavLink } from 'react-router-dom'
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './navBar.css'
+import './Navbar.css'
 import { assets } from '../../../../../carebridge/src/assets/assets/assets'    
 
 const Navbar = ({ setToken }) => {
