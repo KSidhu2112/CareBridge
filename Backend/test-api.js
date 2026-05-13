@@ -1,4 +1,4 @@
-fetch('http://localhost:5000/api/user/send-otp', {
+fetch('https://carebridge-auom.onrender.com/api/user/send-otp', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

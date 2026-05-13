@@ -1,7 +1,7 @@
 
 import axios from 'axios';
 
-const url = "http://localhost:5000";
+const url = "https://carebridge-auom.onrender.com";
 
 async function testRegistration() {
     try {
