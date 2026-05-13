@@ -11,7 +11,7 @@ export const StoreContextProvider = (props) => {
   const [orders,setOrders]=useState(null);
   const [orderId, setOrderId] = useState(null);
 
-  const url = "http://localhost:5000";
+  const url = "https://carebridge-auom.onrender.com";
 
   // ✅ Safe quantity calculation
   useEffect(() => {

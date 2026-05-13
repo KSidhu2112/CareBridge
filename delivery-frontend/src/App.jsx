@@ -10,7 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const url = "http://localhost:5000";
+  const url = "https://carebridge-auom.onrender.com";
 
   return (
     <div className='app'>
