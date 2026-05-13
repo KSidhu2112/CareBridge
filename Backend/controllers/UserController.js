@@ -147,7 +147,7 @@ export const getProfile = async (req, res) => {
 
 export const getDeliveryBoys = async (req, res) => {
     try {
-        const deliveryBoys = await UserModel.find({}).select('-password');
+        const deliveryBoys = await UserModel.find({ role: 'delivery_boy' }).select('-password');
         res.json({ success: true, deliveryBoys });
     } catch (error) {
         console.log(error);

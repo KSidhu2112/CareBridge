@@ -16,7 +16,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const url="https://carebridge-auom.onrender.com"
+  const url="http://localhost:5000"
   const [token, setToken] = useState(localStorage.getItem("adminToken") || "");
 
   useEffect(() => {
