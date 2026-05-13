@@ -37,12 +37,12 @@ const placeOrder = async (req, res) => {
   }
 };
 
-// GET AVAILABLE ORDERS
 const getAvailableOrders = async (req, res) => {
     try {
-        // Query for any order not yet assigned
+        // Query for any order not yet assigned, and exclude orders placed by the delivery person themselves
         const orders = await orderModel.find({ 
-            deliveryPerson: { $in: [null, undefined] } 
+            deliveryPerson: { $in: [null, undefined] },
+            userId: { $ne: req.userId }
         }).sort({ date: -1 });
         
         res.json({ success: true, orders });
