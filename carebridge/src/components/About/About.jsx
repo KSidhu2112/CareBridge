@@ -34,7 +34,7 @@ function About() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get("https://carebridge-auom.onrender.com/api/stats");
+        const response = await axios.get("http://localhost:5000/api/stats");
         if (response.data.success) {
           setStats(response.data.data);
         }
