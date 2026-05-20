@@ -1,10 +1,13 @@
 
 
-import React from "react";
+import React, { useContext } from "react";
 import "./Footer.css";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 
 function Footer() {
+  const { role } = useContext(StoreContext);
+
   return (
     <footer className="footer" id="contact">
       <div className="footer-content">
@@ -20,7 +23,11 @@ function Footer() {
           <h3>Quick Links</h3>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/donation">Donate</Link></li>
+            {role === 'receiver' ? (
+              <li><Link to="/menu">Receive</Link></li>
+            ) : (
+              <li><Link to="/donation">Donate</Link></li>
+            )}
             <li><a href="/#about">About Us</a></li>
             <li><a href="/#contact">Contact</a></li>
           </ul>

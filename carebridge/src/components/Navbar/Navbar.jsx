@@ -11,14 +11,19 @@ function Navbar({ setIsLogin ,shop,setShop}) {
     const navigate = useNavigate();
     const location = useLocation();
     const isTracking = location.pathname.startsWith("/track");
-    const {totalQuantity,setTotalQuantity,token,setToken,orderId,setOrderId,url}=useContext(StoreContext);
+    const {totalQuantity,setTotalQuantity,token,setToken,orderId,setOrderId,url,role,setRole,userName,setUserName}=useContext(StoreContext);
     const handleClick = (item) => {
       setActive(item);
     };
 
     const logout=()=>{
-      localStorage.removeItem("authToken")
+      localStorage.removeItem("authToken");
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userName");
       setToken("");
+      setRole("");
+      setUserName("");
+      navigate("/");
       navigate("/");
     }
 
@@ -92,23 +97,45 @@ function Navbar({ setIsLogin ,shop,setShop}) {
       
 
       <div className="navbar-right">
-        <button 
-          className="track-order" 
-          onClick={isTracking ? () => navigate("/cart") : handleTrackOrder}
-        >
-          {isTracking ? "Cart" : "Track Order"}
-        </button>
+        {role === 'receiver' && (
+          <button 
+            className="track-order" 
+            onClick={() => navigate("/menu")}
+          >
+            Request Help
+          </button>
+        )}
+
+        {role === 'receiver' && (
+          <button 
+            className="track-order" 
+            onClick={isTracking ? () => navigate("/cart") : handleTrackOrder}
+          >
+            {isTracking ? "Cart" : "Track Order"}
+          </button>
+        )}
+        
+        {role === 'donor' && (
+          <button 
+            className="track-order" 
+            onClick={() => navigate("/donation")}
+          >
+            Donate Now
+          </button>
+        )}
         <div className="navbar-icons">
           <img src={fassets.search_icon} alt="" />
-          <div className="navbar-search-icon">
-            <Link to={'/cart'}><img onClick={()=>setShop(true)} src={fassets.basket_icon} alt="" /></Link>
-            <div className= {totalQuantity===0 ? ""  : "dot"}></div>
-          </div>
+          {(!role || role === 'receiver') && (
+            <div className="navbar-search-icon">
+              <Link to={'/cart'}><img onClick={()=>setShop(true)} src={fassets.basket_icon} alt="" /></Link>
+              <div className= {totalQuantity===0 ? ""  : "dot"}></div>
+            </div>
+          )}
         </div>
 
-        {shop && (
+        {shop && role === 'receiver' && (
           <div className="cartbtn">
-            <button onClick={() => navigate('/menu')}>Shop More</button>
+            <button onClick={() => navigate('/menu')}>Request More</button>
           </div>
         )}
 
@@ -117,10 +144,16 @@ function Navbar({ setIsLogin ,shop,setShop}) {
             <button onClick={()=>setIsLogin(true)}>Sign Up</button>
           </div> 
         ) : (
-          <div className="navbar-profile">
-            <img  src={fassets.profile_icon} alt="" />
+          <div className="navbar-profile" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div className="user-info" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', marginRight: '5px' }}>
+              <span className="user-name" style={{ fontWeight: 'bold', fontSize: '14px', color: '#49557e' }}>{userName || "User"}</span>
+              <span className={`role-badge`} style={{ fontSize: '11px', padding: '2px 8px', borderRadius: '12px', background: role === 'donor' ? '#4CAF50' : '#2196F3', color: 'white', textTransform: 'capitalize', fontWeight: '500' }}>{role}</span>
+            </div>
+            <img  src={fassets.profile_icon} alt="" style={{ cursor: 'pointer' }} />
             <ul className="nav-profile_dropdown">
-              <li onClick={()=>navigate("/myorders")}><img src={fassets.bag_icon} alt="" /><p>Orders</p></li>
+              <li onClick={() => navigate("/dashboard")}><img src={fassets.bag_icon} alt="" /><p>Dashboard</p></li>
+              {role === 'donor' && <li onClick={() => navigate("/mydonations")}><img src={fassets.bag_icon} alt="" /><p>History</p></li>}
+              {role === 'receiver' && <li onClick={() => navigate("/myorders")}><img src={fassets.bag_icon} alt="" /><p>History</p></li>}
               <hr />
               <li onClick={()=>logout()}><img  src={fassets.logout_icon} alt="" /><p>Logout</p></li>
             </ul>

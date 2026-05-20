@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 const UserOrders = () => {
   const {  token, url } = useContext(StoreContext);
   const [orders, setOrders]=useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,15 +38,44 @@ const UserOrders = () => {
     ));
   };
 
+  const filteredOrders = orders.filter(order => {
+    const matchesSearch = order._id.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                          order.items.some(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesStatus = filterStatus === "All" || order.status === filterStatus;
+    return matchesSearch && matchesStatus;
+  });
+
+  const statuses = ["All", ...new Set(orders.map(o => o.status))];
+
   return (
     <div className="my-orders">
-      <h2>My Orders</h2>
+      <div className="orders-header-section">
+        <h2>My Orders</h2>
+        <div className="orders-filters">
+            <input 
+                type="text" 
+                placeholder="Search by ID or items..." 
+                value={searchTerm} 
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-input"
+            />
+            <select 
+                value={filterStatus} 
+                onChange={(e) => setFilterStatus(e.target.value)}
+                className="filter-select"
+            >
+                {statuses.map((status, idx) => (
+                    <option key={idx} value={status}>{status}</option>
+                ))}
+            </select>
+        </div>
+      </div>
 
-      {!orders || orders.length === 0 ? (
-        <p>No orders found</p>
+      {!orders || filteredOrders.length === 0 ? (
+        <p>No orders found matching your criteria.</p>
       ) : (
         <div className="orders-container">
-          {orders.map(order => (
+          {filteredOrders.map(order => (
             <div className="order-card" key={order._id}>
               <div className="order-info">
                 <p><b>Order ID:</b> {order._id.slice(-8)}</p>

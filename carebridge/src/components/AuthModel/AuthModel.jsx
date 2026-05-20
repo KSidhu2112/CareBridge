@@ -12,13 +12,14 @@ function AuthModal({ setIsLogin }) {
     email: "",
     password: "",
     confirmPassword: "",
-    otp: ""
+    otp: "",
+    role: "donor"
   });
 
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { url, setToken } = useContext(StoreContext);
+  const { url, setToken, setRole, setUserName, setUserEmail } = useContext(StoreContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,7 +44,17 @@ function AuthModal({ setIsLogin }) {
 
       if (res.data.success) {
         setToken(res.data.token);
+        setRole(res.data.role);
+        if (res.data.name) {
+          setUserName(res.data.name);
+          localStorage.setItem("userName", res.data.name);
+        }
+        if (res.data.email) {
+          setUserEmail(res.data.email);
+          localStorage.setItem("userEmail", res.data.email);
+        }
         localStorage.setItem("authToken", res.data.token);
+        localStorage.setItem("userRole", res.data.role);
         setIsLogin(false);
         alert("Authentication Successful");
       } else {
@@ -66,7 +77,11 @@ function AuthModal({ setIsLogin }) {
       const res = await axios.post(`${url}/api/user/send-otp`, { email: data.email });
       if (res.data.success) {
         setOtpSent(true);
-        alert("OTP sent to your email");
+        if (res.data.devOtp) {
+          alert("Email service unavailable. Your verification code is: " + res.data.devOtp);
+        } else {
+          alert("OTP sent to your email");
+        }
       } else {
         alert(res.data.message + (res.data.error ? ": " + res.data.error : ""));
       }
@@ -128,6 +143,19 @@ function AuthModal({ setIsLogin }) {
     required
     autoComplete="new-password"
   />
+)}
+
+{curState === "signup" && (
+  <div className="role-selector" style={{display: 'flex', gap: '15px', margin: '10px 0'}}>
+    <label style={{display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer'}}>
+      <input type="radio" name="role" value="donor" checked={data.role === 'donor'} onChange={handleChange} /> 
+      Donor
+    </label>
+    <label style={{display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer'}}>
+      <input type="radio" name="role" value="receiver" checked={data.role === 'receiver'} onChange={handleChange} /> 
+      Receiving
+    </label>
+  </div>
 )}
 
 {curState === "signup" && otpSent && (

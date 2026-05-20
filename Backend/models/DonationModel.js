@@ -21,6 +21,18 @@ const DonationSchema = new mongoose.Schema({
     image:{
         type:String,
         required:true
+    },
+    donorId:{
+        type:String,
+        default:null
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
+    status: {
+        type: String,
+        default: "Pending"
     }
 })
 

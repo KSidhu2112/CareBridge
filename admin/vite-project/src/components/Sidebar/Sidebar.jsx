@@ -5,7 +5,7 @@ import { assets } from '../../../../../carebridge/src/assets/assets/assets'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = ({ url }) => {
-  const [stats, setStats] = useState({ donations: 0, receivers: 0, communities: 0 });
+  const [stats, setStats] = useState({ donations: 0, receivers: 0, communities: 0, donors: 0, receiversCount: 0 });
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -46,6 +46,16 @@ const Sidebar = ({ url }) => {
         <NavLink to='/deliveryboys' className="order-items">
             <span className="icon" style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🚚</span>
             <p className="text">Delivery Boys ({stats.communities})</p>
+        </NavLink>
+
+        <NavLink to='/donors' className="order-items">
+            <span className="icon" style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🤝</span>
+            <p className="text">Donors ({stats.donors || 0})</p>
+        </NavLink>
+
+        <NavLink to='/receivers' className="order-items">
+            <span className="icon" style={{ fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>🤲</span>
+            <p className="text">Receivers ({stats.receiversCount || 0})</p>
         </NavLink>
     </div>
   )

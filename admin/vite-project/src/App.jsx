@@ -7,6 +7,10 @@ import List from './pages/List/List';
 import Orders from './pages/Orders/Orders';
 import DeliveryBoys from './pages/DeliveryBoys/DeliveryBoys';
 import DeliveryBoyOrders from './pages/DeliveryBoys/DeliveryBoyOrders';
+import Donors from './pages/Donors/Donors';
+import DonorDonations from './pages/Donors/DonorDonations';
+import Receivers from './pages/Receivers/Receivers';
+import ReceiverOrders from './pages/Receivers/ReceiverOrders';
 import Login from './pages/Login/Login';
 import Dashboard from './pages/Dashboard/Dashboard';
 import './index.css';
@@ -15,7 +19,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
-  const url = "https://carebridge-auom.onrender.com";
+  const url = window.location.hostname === 'localhost' ? 'http://localhost:5000' : "https://carebridge-auom.onrender.com";
   const [token, setToken] = useState(localStorage.getItem("adminToken") || "");
 
   useEffect(() => {
@@ -45,6 +49,10 @@ const App = () => {
                 <Route path="/orders" element={<Orders url={url} />} />
                 <Route path="/deliveryboys" element={<DeliveryBoys url={url} />} />
                 <Route path="/deliveryboys/:id/orders" element={<DeliveryBoyOrders url={url} />} />
+                <Route path="/donors" element={<Donors url={url} />} />
+                <Route path="/donors/:id/donations" element={<DonorDonations url={url} />} />
+                <Route path="/receivers" element={<Receivers url={url} />} />
+                <Route path="/receivers/:id/orders" element={<ReceiverOrders url={url} />} />
               </Routes>
             </div>
           </div>
@@ -55,4 +63,3 @@ const App = () => {
 };
 
 export default App;
-

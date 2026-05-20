@@ -1,6 +1,8 @@
 import express from "express";
 import multer from "multer";
-import { createDonation, deleteDonation, getAllDonations } from "../controllers/DonationController.js";
+import { createDonation, deleteDonation, getAllDonations, getDonationsByDonor } from "../controllers/DonationController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+import checkRole from "../middleware/roleMiddleware.js";
 
 const Donationrouter = express.Router();
 
@@ -17,8 +19,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes
-Donationrouter.post("/create", upload.single('image'), createDonation);
+Donationrouter.post("/create", authMiddleware, checkRole(["donor"]), upload.single('image'), createDonation);
 Donationrouter.get("/getAll", getAllDonations);
-Donationrouter.delete("/delete/:id", deleteDonation);
+Donationrouter.get("/donor/:donorId", getDonationsByDonor);
+Donationrouter.delete("/delete/:id", authMiddleware, checkRole(["donor"]), deleteDonation);
 
 export default Donationrouter;
+

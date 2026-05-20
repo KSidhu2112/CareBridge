@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 
 const Donation = () => {
-    const {url} =useContext(StoreContext)
+    const {url, token} = useContext(StoreContext)
   const [image, setImage] = useState(null);
   const [data, setData] = useState({
     name: "",
@@ -19,6 +19,17 @@ const Donation = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
+  };
+
+  // Decode userId from JWT token
+  const getUserIdFromToken = () => {
+    try {
+      if (!token) return null;
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.id || null;
+    } catch {
+      return null;
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -35,12 +46,21 @@ const Donation = () => {
     formData.append("price", data.price);
     formData.append("image", image);
 
+    // Include the donor's userId if logged in
+    const userId = getUserIdFromToken();
+    if (userId) {
+      formData.append("donorId", userId);
+    }
+
     try {
       const res = await axios.post(
         `${url}/api/donation/create`,
         formData,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { 
+            "Content-Type": "multipart/form-data",
+            token: token
+          },
         }
       );
 

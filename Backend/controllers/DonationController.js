@@ -9,8 +9,8 @@ export const createDonation = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       category: req.body.category,
-      image: req.file.filename
-
+      image: req.file.filename,
+      donorId: req.body.donorId || null
     });
 
     const savedDonation = await donation.save();
@@ -38,6 +38,16 @@ export const getAllDonations = async (req, res) => {
   }
 };
 
+export const getDonationsByDonor = async (req, res) => {
+  try {
+    const { donorId } = req.params;
+    const donations = await DonationModel.find({ donorId }).sort({ _id: -1 });
+    res.status(200).json({ success: true, data: donations });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Failed to fetch donor donations", error: error.message });
+  }
+};
+
 export const deleteDonation = async (req, res) => {
   try {
     const donation = await DonationModel.findById(req.params.id);
@@ -60,3 +70,4 @@ export const deleteDonation = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+

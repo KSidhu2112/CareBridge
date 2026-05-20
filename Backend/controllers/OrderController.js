@@ -280,4 +280,21 @@ const getOrdersByDeliveryBoy = async (req, res) => {
     }
 };
 
-export { placeOrder, getAllOrders, verifyOrder, getOrderById, UserOrders, getAvailableOrders, bookOrder, updateStatus, getDeliveryOrders, rateOrder, getOrdersByDeliveryBoy };
+// GET ALL ORDERS FOR A SPECIFIC USER/RECEIVER (Admin)
+const getOrdersByUser = async (req, res) => {
+    try {
+        const { userId } = req.params;
+
+        const orders = await orderModel.find({
+            userId: userId
+        }).sort({ date: -1 });
+
+        res.json({ success: true, orders });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Failed to fetch user orders" });
+    }
+};
+
+export { placeOrder, getAllOrders, verifyOrder, getOrderById, UserOrders, getAvailableOrders, bookOrder, updateStatus, getDeliveryOrders, rateOrder, getOrdersByDeliveryBoy, getOrdersByUser };
+

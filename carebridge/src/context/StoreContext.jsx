@@ -10,8 +10,11 @@ export const StoreContextProvider = (props) => {
   const [menu, setMenu] = useState([]);
   const [orders,setOrders]=useState(null);
   const [orderId, setOrderId] = useState(null);
+  const [role, setRole] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
-  const url = "https://carebridge-auom.onrender.com";
+  const url = window.location.hostname === 'localhost' ? 'http://localhost:5000' : "https://carebridge-auom.onrender.com";
 
   // ✅ Safe quantity calculation
   useEffect(() => {
@@ -35,6 +38,27 @@ export const StoreContextProvider = (props) => {
       const storedToken = localStorage.getItem("authToken");
       if (storedToken) {
         setToken(storedToken);
+        setRole(localStorage.getItem("userRole") || "");
+        setUserName(localStorage.getItem("userName") || "");
+        setUserEmail(localStorage.getItem("userEmail") || "");
+
+        // Fetch up-to-date user profile from backend
+        try {
+          const profileRes = await axios.get(url + "/api/user/get-profile", {
+            headers: { token: storedToken }
+          });
+          if (profileRes.data.success && profileRes.data.user) {
+            setRole(profileRes.data.user.role);
+            setUserName(profileRes.data.user.name);
+            setUserEmail(profileRes.data.user.email);
+            localStorage.setItem("userRole", profileRes.data.user.role);
+            localStorage.setItem("userName", profileRes.data.user.name);
+            localStorage.setItem("userEmail", profileRes.data.user.email);
+          }
+        } catch (error) {
+          console.error("Failed to fetch user profile", error);
+        }
+
         await loadCartData(storedToken);
       }
     }
@@ -101,7 +125,10 @@ export const StoreContextProvider = (props) => {
     setToken,
     totalQuantity,
     orders,setOrders,
-    orderId, setOrderId
+    orderId, setOrderId,
+    role, setRole,
+    userName, setUserName,
+    userEmail, setUserEmail
   };
 
   return (

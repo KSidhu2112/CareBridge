@@ -6,7 +6,38 @@
 .my-donations h2 {
     font-size: 25px;
     font-weight: 600;
+}
+
+.donations-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.donations-filters {
+    display: flex;
+    gap: 15px;
+}
+
+.search-input, .filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.search-input {
+    min-width: 200px;
+}
+
+.filter-select {
+    min-width: 120px;
+    background-color: white;
 }
 
 .donations-container {

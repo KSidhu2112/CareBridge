@@ -4,7 +4,7 @@ import Hero from '../../components/Hero/Hero'
 import About from '../../components/About/About'
 import DonationSection from '../../components/DonationSection/DonationSection'
 
-const Home = ({setShowModel,setShop}) => {
+const Home = ({setShowModel,setShop, setIsLogin}) => {
 
   useEffect(() => {
     setShop(false);
@@ -15,7 +15,7 @@ const Home = ({setShowModel,setShop}) => {
             },[setShowModel])
   return (
     <div>
-        <Hero setShop={setShop}/>
+        <Hero setShop={setShop} setIsLogin={setIsLogin}/>
         <About/>
         {/* <DonationSection/> */}
     </div>

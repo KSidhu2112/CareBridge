@@ -1,9 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 import "./Hero.css";
 
-function Hero({setShop}) {
+function Hero({setShop, setIsLogin}) {
   const navigate = useNavigate();
+  const { role } = useContext(StoreContext);
+
+  const handleDonateClick = () => {
+    if (!role) {
+      setIsLogin(true);
+    } else {
+      navigate("/donation");
+    }
+  };
+
+  const handleReceiveClick = () => {
+    if (!role) {
+      setIsLogin(true);
+    } else {
+      setShop(true);
+      navigate("/menu");
+    }
+  };
 
   return (
     <section className="hero" id="Home">
@@ -15,16 +34,14 @@ function Hero({setShop}) {
         </p>
 
         <div className="hero-btns">
-          <button onClick={()=>navigate("/donation")} className="donate">Start Donating</button>
-          <button
-            className="receive"
-            onClick={() => {
-              setShop(true);
-              navigate("/menu");
-            }}
-          >
-            Begin Receiving
-          </button>
+          {(!role || role === 'donor') && (
+            <button onClick={handleDonateClick} className="donate">Start Donating</button>
+          )}
+          {(!role || role === 'receiver') && (
+            <button onClick={handleReceiveClick} className="receive">
+              Begin Receiving
+            </button>
+          )}
         </div>
 
       </div>
