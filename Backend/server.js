@@ -43,9 +43,9 @@ app.use('/images', express.static('uploads'));
 
 // API routes
 app.use('/api/donation', Donationrouter);
-app.use('/api/user',Userrouter);
-app.use("/api/cart",cartRouter);
-app.use("/api/order",orderRouter);
+app.use('/api/user', Userrouter);
+app.use("/api/cart", cartRouter);
+app.use("/api/order", orderRouter);
 app.use("/api/stats", statsRouter);
 
 // Direct fix for Delivery Boy Orders is already handled in UserRoute.js
@@ -55,9 +55,13 @@ app.listen(port, () => {
 });
 
 process.on('uncaughtException', (err) => {
-    console.error('🔥 UNCAUGHT EXCEPTION:', err);
+  console.error('🔥 UNCAUGHT EXCEPTION:', err);
 });
 
 process.on('unhandledRejection', (reason, promise) => {
-    console.error('🔥 UNHANDLED REJECTION:', reason);
+  console.error('🔥 UNHANDLED REJECTION:', reason);
 });
+
+
+
+// the backend code is comminted into the git
