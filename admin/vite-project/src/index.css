@@ -14,20 +14,14 @@ body{
 hr{
   border: none;
   height: 1px;
-  border-color: #a9a9a9;
-}
-
-.app-container{
-  
-  display: flex;
-  height: 100vh;
-  width: 100%;
-  font-family: 'Outfit', sans-serif;
+  background-color: #dbdbdb;
 }
 
 .app-container {
   display: flex;
   min-height: 100vh;
+  width: 100%;
+  font-family: 'Outfit', sans-serif;
 }
 
 .content {

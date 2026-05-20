@@ -2,13 +2,16 @@ import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {  assets as fassets } from "../../assets/frontend";
+import axios from "axios";
 
 import { StoreContext } from "../../context/StoreContext";
 
 function Navbar({ setIsLogin ,shop,setShop}) {
     const [active, setActive] = useState("Home"); // default active
     const navigate = useNavigate();
-    const {totalQuantity,setTotalQuantity,token,setToken,orderId,setOrderId}=useContext(StoreContext);
+    const location = useLocation();
+    const isTracking = location.pathname.startsWith("/track");
+    const {totalQuantity,setTotalQuantity,token,setToken,orderId,setOrderId,url}=useContext(StoreContext);
     const handleClick = (item) => {
       setActive(item);
     };
@@ -18,6 +21,40 @@ function Navbar({ setIsLogin ,shop,setShop}) {
       setToken("");
       navigate("/");
     }
+
+    const handleTrackOrder = async () => {
+      if (!token) {
+        setIsLogin(true);
+        return;
+      }
+      if (orderId) {
+        navigate(`/track/${orderId}`);
+        return;
+      }
+      try {
+        const res = await axios.get(url + "/api/order/myorders", {
+          headers: { token },
+        });
+        if (res.data.success && res.data.orders && res.data.orders.length > 0) {
+          // Find the most recent active order (not Received or Cancelled), or fallback to the latest order
+          const activeOrder = res.data.orders.find(
+            (o) => o.status !== "Received" && o.status !== "Cancelled"
+          );
+          if (activeOrder) {
+            navigate(`/track/${activeOrder._id}`);
+          } else {
+            // Fallback to the latest order
+            navigate(`/track/${res.data.orders[0]._id}`);
+          }
+        } else {
+          // If no orders, send to myorders page where they can see the "No orders found" state
+          navigate("/myorders");
+        }
+      } catch (err) {
+        console.error("Error fetching orders for tracking:", err);
+        navigate("/myorders");
+      }
+    };
 
 
 
@@ -55,6 +92,12 @@ function Navbar({ setIsLogin ,shop,setShop}) {
       
 
       <div className="navbar-right">
+        <button 
+          className="track-order" 
+          onClick={isTracking ? () => navigate("/cart") : handleTrackOrder}
+        >
+          {isTracking ? "Cart" : "Track Order"}
+        </button>
         <div className="navbar-icons">
           <img src={fassets.search_icon} alt="" />
           <div className="navbar-search-icon">

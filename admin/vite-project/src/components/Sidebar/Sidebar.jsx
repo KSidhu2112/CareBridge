@@ -4,13 +4,13 @@ import './Sidebar.css'
 import { assets } from '../../../../../carebridge/src/assets/assets/assets'
 import { NavLink } from 'react-router-dom'
 
-const Sidebar = () => {
+const Sidebar = ({ url }) => {
   const [stats, setStats] = useState({ donations: 0, receivers: 0, communities: 0 });
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get("https://carebridge-auom.onrender.com/api/stats");
+        const response = await axios.get(`${url}/api/stats`);
         if (response.data.success) {
           setStats(response.data.data);
         }
@@ -19,7 +19,7 @@ const Sidebar = () => {
       }
     };
     fetchStats();
-  }, []);
+  }, [url]);
 
   return (
     <div className="sidebar">
