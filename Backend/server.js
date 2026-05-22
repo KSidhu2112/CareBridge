@@ -63,5 +63,11 @@ process.on('unhandledRejection', (reason, promise) => {
 });
 
 
+app.get("/", (req, res) => {
+   res.json({
+      status: "OK"
+   });
+});
+
 
 // the backend code is comminted into the git
